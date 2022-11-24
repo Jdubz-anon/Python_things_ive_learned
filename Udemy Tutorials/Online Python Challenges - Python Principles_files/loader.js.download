@@ -1,6 +1,0 @@
-function underDevelopment (name) {
-	log("wantsLesson - " + base64_encode(name), function () {
-		document.location = "/development.php";
-	});
-}
-
