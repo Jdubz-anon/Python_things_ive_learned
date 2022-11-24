@@ -1,0 +1,79 @@
+class TreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.children = []
+        self.parent = None
+
+    def add_child(self,child):
+        child.parent = self
+        self.children.append(child)
+
+    def print_tree(self,depth):
+        if self.get_level() <= depth:
+            spaces = ' ' * self.get_level() * 3
+            prefix = spaces + '|--' if self.parent else ''
+            print(prefix + self.data)
+        if self.children:
+            for child in self.children:
+                child.print_tree(depth)
+
+    def get_level(self):
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent
+        return level
+
+def build_product_tree():
+    root = TreeNode('Global')
+
+    india = TreeNode('India')
+
+    gujarat = TreeNode('Gujarat')
+    amelabad = TreeNode('Amelabad')
+    baroda = TreeNode('Baroda')
+
+    gujarat.add_child(amelabad)
+    gujarat.add_child(baroda)
+
+    karnataka = TreeNode('Karnataka')
+    bangluru = TreeNode('Bangluru')
+    mysore = TreeNode('Mysore')
+
+    karnataka.add_child(bangluru)
+    karnataka.add_child(mysore)
+
+    india.add_child(gujarat)
+    india.add_child(karnataka)
+
+
+    usa = TreeNode('USA')
+
+    new_jersey = TreeNode('New Jersey')
+    princeton = TreeNode('Princeton')
+    trenton = TreeNode('Trenton')
+
+    new_jersey.add_child(princeton)
+    new_jersey.add_child(trenton)
+
+    california = TreeNode('California')
+    san_francisco = TreeNode('San Francisco')
+    mt_view = TreeNode('Mountain View')
+    palo_alto = TreeNode('Palo Alto')
+
+    california.add_child(san_francisco)
+    california.add_child(mt_view)
+    california.add_child(palo_alto)
+
+    root.add_child(india)
+    root.add_child(usa)
+
+    usa.add_child(new_jersey)
+    usa.add_child(california)
+
+    return root
+
+if __name__ == '__main__':
+    root = build_product_tree()
+    root.print_tree(3)

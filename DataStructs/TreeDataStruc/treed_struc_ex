@@ -1,0 +1,61 @@
+class TreeNode:
+    def __init__(self, data,position):
+        self.data = data
+        self.position = f'({position})'
+        self.children = []
+        self.parent = None
+
+    def add_child(self,child):
+        child.parent = self
+        self.children.append(child)
+
+    def print_tree(self,type):
+        #added type arguement to print postions
+        spaces = ' ' * self.get_level() * 3
+        prefix = spaces + '|--' if self.parent else ''
+        if type == 'both':
+            print(prefix + self.data + self.position)
+        elif type == 'designation':
+            print(prefix + self.position)
+        elif type == 'name':
+            print(prefix + self.data)
+        if self.children:
+            for child in self.children:
+                child.print_tree(type)
+
+    def get_level(self):
+        level = 0
+        p = self.parent
+        while p:
+            level += 1
+            p = p.parent
+        return level
+def build_product_tree():
+    root = TreeNode('Nilupul', 'ceo')
+
+    cto = TreeNode('chinmay', 'cto')
+    #cto.add_child(TreeNode('vishwa'))
+    cto.add_child(TreeNode('amir','application head'))
+
+    inf_head = TreeNode('vishwa','infrastructure head')
+    inf_head.add_child(TreeNode('Daval', 'cloud manager'))
+    inf_head.add_child(TreeNode('abhijit', 'app manager'))
+
+    hr_head = TreeNode('gels', 'hr manager')
+    hr_head.add_child(TreeNode('peter', 'recruitment manager'))
+    hr_head.add_child(TreeNode('waqas', 'policy manager'))
+
+    root.add_child(cto)
+    root.add_child(hr_head)
+    cto.add_child(inf_head)
+    #print(tv.get_level())
+    return root
+if __name__ == '__main__':
+    root = build_product_tree()
+    #print(root.get_level())
+    root.print_tree('name')
+    root.print_tree('both')
+    root.print_tree('designation')
+
+find exercise at
+https://github.com/codebasics/data-structures-algorithms-python/blob/master/data_structures/7_Tree/7_tree_exercise.md

@@ -1,0 +1,281 @@
+#####making a sad/happy face####
+import arcade
+
+#set window size
+window_width = 700
+window_height = 700
+
+arcade.open_window(width=window_width,height=window_height,window_title="Sad Face")
+arcade.set_background_color(arcade.color.AERO_BLUE)
+#very important starting the render
+arcade.start_render()
+
+#Drawing starts from here
+#draw outline of the face
+
+arcade.draw_circle_filled(center_x=350,center_y=350,radius=200,
+                          color=arcade.color.YELLOW)
+
+arcade.draw_circle_filled(center_x=430 , center_y=410,radius=25,
+                          color=arcade.color.BLACK)
+arcade.draw_circle_filled(center_x=270, center_y=410, radius=25, color=arcade.color.BLACK)
+
+x = 350
+y = 240
+width = 150
+height = 100
+
+arcade.draw_arc_outline(center_x=x, center_y=y, width=width, height=height,start_angle=0,end_angle=180,color=arcade.color.BLACK,
+                        border_width=25) #change angle to make happy face
+#finishing the render
+arcade.finish_render()
+arcade.run()
+
+############CREATING A STILL IMAGE#########
+import random
+
+import arcade
+
+#set window size
+window_width = 800
+window_height = 800
+
+def screen():
+    #upper background portion
+    arcade.draw_rectangle_filled(window_width/2,window_height*2/3
+                                 ,window_width-1,window_height*2/3,
+                                 color=arcade.color.SKY_MAGENTA)
+    #lower 1/3 portion
+    arcade.draw_rectangle_filled(window_width//2,window_height/6,window_width - 1,
+                                 window_height/3,color=arcade.color.LIGHT_GREEN)
+
+def birds(x,y):
+    arcade.draw_arc_outline(x,y,15,15,color=arcade.color.BLACK,start_angle=0,end_angle=90,
+                            border_width=2)
+    arcade.draw_arc_outline(x+15, y, 15, 15, color=arcade.color.BLACK, start_angle=90, end_angle=180,
+                            border_width=2)
+def trees(axis_x,axis_y):
+    arcade.draw_rectangle_filled(axis_x,axis_y,20,40,arcade.color.DARK_BROWN)
+    root_line = axis_y + 20
+    list = ((axis_x-40,root_line), (axis_x,root_line+100), (axis_x+40,root_line))
+    arcade.draw_polygon_filled(list,arcade.color.DARK_GREEN)
+
+
+if  __name__ == "__main__":
+    #open the window
+    arcade.open_window(window_width,window_height,'Arc Mod Still Imaging')
+
+    #very important starting the render
+    arcade.start_render()
+
+    #drawing goes here
+    screen()
+    for count in range(10):
+        x = random.randrange(0,window_width)
+        y = random.randrange(int(window_height/3),window_height-20)
+        birds(x,y)
+    for a in range(45,window_width,90):
+        trees(a,window_height/3)
+    for a in range(65,window_width,90):
+        trees(a,(window_height/3)-125)
+
+        #finishing the render
+    arcade.finish_render()
+    arcade.run()
+
+#######create a time####
+import arcade
+
+class Timer(arcade.Window):
+    def __init__(self,window_width=300,window_height=150):
+        super().__init__(window_width,window_height)
+        self.time = 10.0
+
+    def init(self):
+        arcade.set_background_color(arcade.color.BLACK)
+        self.time = 10.0
+
+    def on_draw(self):
+        arcade.start_render()
+        calc_min = int(self.time)//60
+        calc_sec = int(self.time)%60
+        result_time = f'Time : {calc_min}:{calc_sec}'
+        arcade.draw_text(result_time, 60,60,arcade.color.RED,35)
+
+    def update(self,new_time):
+        self.time += new_time
+
+
+obj1 = Timer()
+obj1.init()
+arcade.run()
+
+###########SNOWFALL###########
+
+import arcade
+import random
+import math
+window_width = 800
+window_height = 600
+
+class Snow():
+    def __init__(self):
+        self.x = 0
+        self.y = 0
+
+
+    def reset_position(self):
+        self.x = random.randrange(window_width)
+        self.y = random.randrange(window_height,window_height+100)
+
+class Game(arcade.Window):
+    def __init__(self,screen_width,screen_height):
+        super().__init__(screen_width,screen_height)
+        self.snowflakes_list = None
+
+    def start_snowfall(self):
+        self.snowflakes_list = []
+        for i in range(100):
+            snow_flake = Snow()
+            #positon where snow starts to fall
+            snow_flake.x = random.randrange(window_width)
+            snow_flake.y = random.randrange(window_height+400)
+
+            snow_flake.size = random.randrange(2)
+            #how the snow falls
+            snow_flake.speed = random.randrange(20,100)
+            snow_flake.angle = random.uniform(math.pi, math.pi*2)
+
+            self.snowflakes_list.append(snow_flake)
+
+        arcade.set_background_color(arcade.color.BLACK)
+
+    def on_draw(self):
+        arcade.start_render()
+        for snowflake in self.snowflakes_list:
+            arcade.draw_circle_filled(snowflake.x,snowflake.y,
+                                      snowflake.size,arcade.color.WHITE)
+
+    def update(self,new_time):
+        for snowflake in self.snowflakes_list:
+            snowflake.y -= snowflake.speed * new_time
+            if snowflake.y < 0:
+                snowflake.reset_position()
+
+            snowflake.x += snowflake.speed * math.cos(snowflake.angle) * new_time
+            snowflake.angle += 1 * new_time
+
+game = Game(window_width,window_height)
+game.start_snowfall()
+arcade.run()
+#########CREATING A RADAR########
+
+import math
+import arcade
+
+window_width = 800
+window_height = 800
+
+axis_x = window_width // 2
+axis_y = window_height // 2
+raidans_per_tick = 0.02
+
+radar_needle_length = 300
+
+def on_draw(new_time):
+    on_draw.angle += raidans_per_tick
+
+    x = radar_needle_length * math.sin(on_draw.angle) + axis_x
+    y = radar_needle_length * math.cos(on_draw.angle) + axis_y
+
+    arcade.start_render()
+    arcade.draw_line(axis_x,axis_y,x,y,arcade.color.ROSE,5)
+    arcade.draw_circle_outline(axis_x,axis_y,radar_needle_length,arcade.color.DARK_BLUE)
+
+on_draw.angle = 0
+
+arcade.open_window(window_width,window_height, 'radar')
+arcade.set_background_color(arcade.color.BLACK)
+arcade.schedule(on_draw,1/100)
+arcade.run()
+
+############MAKE A MOVING OBJECT######
+import arcade
+
+window_width = 800
+window_height = 600
+
+rec_width = 50
+rec_height = 50
+movement_speed = 5
+
+class Rectangle():
+    def __init__(self,x,y,rec_width,rec_height,angle,color):
+        #position
+        self.x = x
+        self.y = y
+        #vector
+        self.new_x = 0
+        self.new_y = 0
+        #rotation
+        self.angle = angle
+        #size
+        self.rect_width = rec_width
+        self.rect_height = rec_height
+        #color
+        self.color = color
+
+    def draw(self):
+        arcade.draw_rectangle_filled(self.x,self.y,self.rect_width,self.rect_height,self.color,self.angle)
+
+    def move(self):
+        self.x += self.new_x
+        if self.x < rec_width // 2:
+            self.x = rec_width // 2
+        if self.x > window_width - (rec_width // 2):
+            self.x = window_width - (rec_width // 2)
+
+        self.y += self.new_y
+        if self.y < rec_height // 2:
+            self.y = rec_height // 2
+        if self.y > window_height - (rec_height // 2):
+            self.y = window_height - (rec_height // 2)
+
+class Game(arcade.Window):
+    def __init__(self,width,height):
+        super().__init__(width, height,title='Moving Rectangle')
+
+    def setup(self):
+        x = window_width // 2
+        y = window_height // 2
+        self.player = Rectangle(x,y,rec_width,rec_height,angle=0,
+                                color=arcade.color.ROSE)
+
+    def update(self,dt):
+        #move everything
+        self.player.move()
+
+    def on_draw(self):
+        arcade.start_render()
+        self.player.draw()
+
+    def on_key_press(self,key,modifiers):
+        if key == arcade.key.UP:
+            self.player.new_y = movement_speed
+        elif key == arcade.key.DOWN:
+            self.player.new_y = -movement_speed
+        elif key == arcade.key.LEFT:
+            self.player.new_x = -movement_speed
+        elif key == arcade.key.RIGHT:
+            self.player.new_x = movement_speed
+
+    def on_key_release(self, key, modifiers):
+        if key == arcade.key.UP or key == arcade.key.DOWN:
+            self.player.new_y = 0
+        if key == arcade.key.RIGHT or key == arcade.key.RIGHT:
+            self.player.new_x = 0
+
+obj1 = Game(window_width,window_height)
+obj1.setup()
+arcade.run()
+

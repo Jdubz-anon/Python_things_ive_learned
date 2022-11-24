@@ -1,0 +1,197 @@
+
+
+import pygame
+from pygame.locals import *
+import time
+
+pygame.init()
+
+class GameWin():
+    def __init__(self):
+        self.WIDTH = 800
+        self.HEIGHT = 400
+        self.gwImage = pygame.image.load("win.bmp")
+        self.gwImage = pygame.transform.scale(self.gwImage,(self.WIDTH,self.HEIGHT))
+
+    def drawImage(self,screen):
+        print("dhfajksdhfa")
+        screen.blit(self.gwImage,(30,150))
+
+
+class gameOver():
+    def __init__(self):
+        self.WIDTH = 800
+        self.HEIGHT = 400
+        self.gox = 30
+        self.goy = 150
+        self.goImage = pygame.image.load("gameover.png")
+        self.goImage = pygame.transform.scale(self.goImage,(self.WIDTH,self.HEIGHT))
+
+
+    def drawImage(self,screen):
+        print("dhfajksdhfa")
+        screen.blit(self.goImage,(self.gox,self.goy))
+
+class bat:
+    def __init__(self):
+        self.batx = 400
+        self.baty = 570
+        self.WIDTH = 100
+        self.HEIGHT = 25
+        self.batImage = pygame.image.load("bat.bmp")
+        self.batImage = pygame.transform.scale(self.batImage,(self.WIDTH,self.HEIGHT))
+
+        self.hitbox = pygame.Rect(self.batx, self.baty, self.WIDTH, self.HEIGHT)
+
+
+    def drawBat(self,window):
+        window.blit(self.batImage,(self.batx,self.baty))
+        #pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2) #In case you want to see the hitbox
+
+
+class brick:
+    def __init__(self):
+        self.brickw=80
+        self.brickh=35
+        self.delete_brick_count=0
+        self.no_of_bricks=21
+        self.brickImage = pygame.image.load("brick.bmp")
+        self.brickImage = pygame.transform.scale(self.brickImage,(self.brickw,self.brickh))
+        self.brick_rect = []
+        self.brick_list = []
+
+    def initialize_bricks(self):
+
+        for self.rows in range(50,151,50):
+            for self.col in range(50,651,100):
+                self.brick_list.append([self.col,self.rows])
+                self.brick_rect.append([self.col,self.rows])
+
+    def draw_brick(self,window):
+
+        for row in self.brick_list:
+
+            self.hitbox = pygame.Rect(row[0],row[1] , self.brickw, self.brickh)
+            window.blit(self.brickImage,(row[0],row[1]))
+            pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2) #In case you want to see the hitbox
+
+class ball:
+    def __init__(self):
+        self.ballx = 350
+        self.bally = 300
+        self.WIDTH = 30
+        self.HEIGHT = 60
+
+        self.bkw=800
+        self.bkh=600
+        self.bkwmin=0
+        self.bkhmin=0
+
+        self.ballvelx = 2
+        self.ballvely = 2
+        self.ballImage = pygame.image.load("ball.bmp")
+        self.ballImage = pygame.transform.scale(self.ballImage,(self.WIDTH,self.HEIGHT))
+        self.bk1 = pygame.image.load("bk.bmp")
+        self.bk2 = pygame.image.load("bk.bmp")
+
+
+        self.hitbox = pygame.Rect(self.ballx, self.bally, self.WIDTH, self.HEIGHT)
+
+
+    def drawBall(self,window):
+        window.blit(self.bk1,(self.bkwmin,self.bkhmin))
+        window.blit(self.bk2,(self.bkw,self.bkh))
+
+        window.blit(self.ballImage, (self.ballx, self.bally))
+
+        pygame.draw.rect(window, (255, 0, 0), self.hitbox, 2) #In case you want to see the hitbox
+
+    def moveBall(self):
+        self.ballx = self.ballx + self.ballvelx
+        self.bally = self.bally + self.ballvely
+        self.hitbox = pygame.Rect(self.ballx, self.bally, self.WIDTH, self.HEIGHT)
+
+def main():
+    clock = pygame.time.Clock()
+
+    window =pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("Brick Breaker Game")
+
+    b = ball()
+    b.drawBall(window)
+    bt = bat()
+    bt.drawBat(window)
+    bri = brick()
+    bri.initialize_bricks()
+
+    go = gameOver()
+    gw = GameWin()
+
+    pygame.display.update()
+
+    quit=False
+    while(not quit):
+        window.fill((240,240,240))
+        clock.tick(80)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit=True
+
+        b.drawBall(window)
+        bt.drawBat(window)
+
+        b.moveBall()
+        bri.draw_brick(window)
+
+
+
+        if(b.ballx <b.bkwmin or b.ballx>b.bkw-30):
+            b.ballvelx=-b.ballvelx
+
+        if(b.bally<b.bkhmin ):
+            b.ballvely=-b.ballvely
+
+        if(b.bally>b.bkh):
+            #b.ballvely=-b.ballvely
+            print("gd")
+            go.drawImage(window)
+            bt.batx=1000
+
+
+        if b.hitbox.colliderect(bt.hitbox):
+            b.ballvely=-b.ballvely
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT and bt.batx>0:
+                bt.batx = bt.batx-2
+                bt.hitbox = pygame.Rect(bt.batx, bt.baty, bt.WIDTH, bt.HEIGHT)
+
+            elif event.key == pygame.K_RIGHT and bt.batx<b.bkw-100:
+                bt.batx = bt.batx+2
+                bt.hitbox = pygame.Rect(bt.batx, bt.baty, bt.WIDTH, bt.HEIGHT)
+
+        for row in bri.brick_list:
+
+            bri.hitbox = pygame.Rect(row[0],row[1] , bri.brickw, bri.brickh)
+            pygame.draw.rect(window, (255, 0, 0), bri.hitbox, 2) #In case you want to see the hitbox
+            if b.hitbox.colliderect(bri.hitbox):
+                row[0]=1000
+                row[1]=1000
+                b.ballvely=-b.ballvely
+                window.blit(bri.brickImage,(row[0],row[1]))
+                bri.no_of_bricks=bri.no_of_bricks-1
+                print(bri.no_of_bricks)
+
+            else:
+                window.blit(bri.brickImage,(row[0],row[1]))
+
+        if bri.no_of_bricks==0:
+
+            gw.drawImage(window)
+            b.ballx=1000
+            go.gox=1000
+            bt.batx=1000
+
+        pygame.display.update()
+
+main()
+pygame.quit()

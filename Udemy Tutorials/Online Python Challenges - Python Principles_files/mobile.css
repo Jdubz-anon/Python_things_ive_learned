@@ -1,0 +1,120 @@
+@media only screen and (max-width: 800px) {
+
+/* those fancy shapes don't look good on small screens. */
+#top-bg {
+	transform: none;
+	border-radius: 0;
+	height: 38rem !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 100vw !important;
+}
+
+.cta-button {
+    min-width: 10rem;
+}
+
+.desc-container {
+	padding-left: 0rem;
+	padding-right: 0rem;
+}
+.inner-container {
+	width: 85%;
+}
+
+.desc-container {
+	padding-bottom: 2rem;
+}
+
+#work-at, .work-at-spacing {
+	display: none;
+}
+
+#header-container {
+    height: 30rem;
+}
+
+#hamburger {
+	transform: scale(1.6);
+	line-height: 5rem;
+	margin-right: 2rem;
+}
+
+#editor {
+	font-family: monospace;
+}
+
+#app-right-row1, #app-right-row2 {
+    max-height: 100vh !important;
+}
+
+#editor-container, #eval-result {
+	min-height: 8rem;
+}
+
+#tool-buttons {
+	padding-bottom: 1rem;
+}
+
+#editor {
+  resize: none;
+  border: none;
+}
+
+#content-wrapper {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+	padding-bottom: 1rem !important;
+	padding-top: 1rem !important;
+}
+
+#content, #content-wrapper, #finish-screen {
+    height: auto;
+}
+
+#toaster {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+
+#content strong,
+#content,
+#finish-screen {
+    font-size: 1.1rem !important;
+	line-height: 1.7 !important;
+}
+
+#content p {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+#app-right-row, #app-left-col {
+    margin-right: 1.5rem !important;
+    margin-left: 1.5rem !important;
+}
+
+#links-container {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	top: 5rem;
+
+	background-color: #315b68;
+    border-bottom: 2px solid #438496;
+    border-top: 2px solid #438496;
+
+}
+
+#content pre code {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+}
+
+
+
+
+}

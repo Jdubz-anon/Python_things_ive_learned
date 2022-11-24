@@ -1,0 +1,105 @@
+import seaborn as sns
+import pandas
+import scipy
+from matplotlib import pyplot as plt
+
+df = sns.load_dataset('car_crashes')
+#print(df.head())
+
+sns.set_style('darkgrid',{'axes.edgecolor':'0.5',
+                          'grid.color':'0.1',
+                          'grid.linestyle':'dashdot' })#set themes
+sns.set_context('talk') #options are: talk, paper, poster, notebook
+plt.scatter(df.speeding,df.alcohol)
+sns.despine()
+plt.show()
+
+#param = sns.axes_style()
+#print(param)
+
+########Bargraph#####################
+import seaborn as sns
+import pandas
+import scipy
+from matplotlib import pyplot as plt
+
+sns.set_context('paper')
+df = sns.load_dataset('titanic')
+#print(df.head())
+
+sns.barplot(x='embark_town', y='age', data=df,palette='PuRd',ci='sd',
+            capsize=0.04)
+plt.show()
+
+#param = sns.axes_style()
+#print(param)
+
+#########################HISTOGRAM#############
+
+import seaborn as sns
+import pandas
+import scipy
+from matplotlib import pyplot as plt
+
+sns.set_context('paper')
+df = sns.load_dataset('iris')
+#print(df.head())
+
+sns.histplot(df['petal_length'])
+plt.show()
+
+#param = sns.axes_style()
+#print(param)
+
+###################COUNTPLOT###############
+import seaborn as sns
+import pandas
+import scipy
+from matplotlib import pyplot as plt
+
+sns.set_context('paper')
+sns.set_style('dark')
+df = sns.load_dataset('titanic')
+#print(df.head())
+sns.countplot(x='class',hue='who',data=df,palette='magma')
+plt.title('Survivors')
+
+plt.show()
+
+#param = sns.axes_style()
+#print(param)
+
+############################POINTPLOT###########
+
+import seaborn as sns
+import pandas
+import scipy
+from matplotlib import pyplot as plt
+
+sns.set_context('paper')
+sns.set_style('dark')
+df = sns.load_dataset('tips')
+#print(df.head())
+sns.pointplot(x='day',y='tip',data=df)
+plt.title('Survivors')
+
+plt.show()
+
+#param = sns.axes_style()
+#print(param)
+
+######################JOINTPLOT######
+
+import seaborn as sns
+import pandas
+import scipy
+from matplotlib import pyplot as plt
+
+sns.set_context('paper')
+sns.set_style('dark')
+df = sns.load_dataset('tips')
+#print(df.head())
+sns.jointplot(x='total_bill',y='tip', data=df)
+plt.show()
+#param = sns.axes_style()
+#print(param)

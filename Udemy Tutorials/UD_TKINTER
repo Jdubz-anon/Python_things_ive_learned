@@ -1,0 +1,264 @@
+from tkinter import *
+
+window = Tk()
+
+window.title('Udemy_Tutorial')
+window.geometry('450x450')
+window.iconbitmap('Blue 16-bit normal.cur') #change icon
+#window.configure(bg='blue')   #background color
+#image = PhotoImage(file='googlelogo.png')  #instance of an image
+#button = Button(window, image=image) #create button of an image
+#button.pack() #add button to window
+window.mainloop()
+########Above basic changes to window####
+#####Below Adding a label######Adding Button########
+from tkinter import *
+
+window = Tk()
+
+window.title('Udemy_Tutorial')
+window.geometry('450x450')
+window.iconbitmap('Blue 16-bit normal.cur') #change icon
+
+textlabel = Label(window, text='Justin', font=('Arial Bold',60))
+textlabel.grid(column=0,row=0)
+
+button = Button(window, text='Jdubz', bg='green', foreground='yellow')
+button.grid(column=6,row=6)
+
+window.mainloop()
+##########Below create Arc (on a canvas line 3)#####
+from tkinter import *
+
+root = Tk()
+
+canvas = Canvas(root, width=500, height=500)
+canvas.pack()
+coordinates = 10,50,240,210
+canvas.create_arc(coordinates, start=0, extent=150, fill='blue')
+
+canvas.mainloop()
+
+########ADD FRAME########
+from tkinter import *
+
+root = Tk()
+root.geometry('500x500')
+
+frame = Frame(root, height=100,width=100, bg='red')
+frame.grid(row=0, column=2)
+root.mainloop()
+####below add image to a frame###
+from tkinter import *
+from tkinter import ttk
+root=Tk()
+root.geometry('500x500')
+
+
+frame = Frame(root, width=100,height=100)
+image = PhotoImage(file='test4insta.png')
+button = Label(frame, image=image, text='click me')
+frame.pack()
+button.pack()
+
+root.mainloop()
+
+######Canvas inside a framw####
+from tkinter import *
+
+root=Tk()
+root.geometry('500x500')
+
+frame = Frame(root, bg='blue', width=500,height=500, bd=1)
+frame.pack()
+
+frame1= Frame(frame, bd=2, relief=RAISED)#changine the frame
+frame1.pack()
+
+canvas = Canvas(master=frame1, height=100,width=400, bg='red')
+canvas.pack()
+
+canvas.create_text(120,20,text='canvas in a frame', font=('algerian',12,'bold','italic'))
+frame1.pack()
+
+root.title('Canvas inside frame')
+
+root.mainloop()
+
+####Text Building class and Entry building class####
+from tkinter import *
+
+root=Tk()
+root.geometry('500x500')
+
+#text =Entry(master=root, width=20,font=('Arial',20), fg='red')
+#text.grid(column=0,row=0,ipady=10)
+
+text =Text(root, width=30, height=1,font=('Arial',25),fg='red') #text building class
+text.focus()
+text.grid(column=0,row=0)
+
+root.mainloop()
+
+#########CREATE A CHECK BOX########
+from tkinter import *
+
+root=Tk()
+root.geometry('500x500')
+
+a = IntVar()
+a.set(True)
+ck_box = Checkbutton(root, text='Justin', variable=a)
+ck_box.grid(column=0,row=0)
+b = IntVar() #default is False dont have to use set method
+ck_box2 = Checkbutton(root, text='Gort' , variable=b)
+ck_box2.grid(column=1,row=0)
+c = IntVar()
+ck_box3 = Checkbutton(root, text='text', variable=c)
+ck_box3.grid(column=2,row=0)
+
+root.mainloop()
+######CREATE A RADIO BUTTON####
+from tkinter import *
+
+root=Tk()
+root.geometry('500x500')
+
+radio_state = IntVar()
+male_radio_btn = Radiobutton(root, text='Male', variable=radio_state, value=1)
+male_radio_btn.grid(column=0, row=0)
+
+female_radio_btn = Radiobutton(root, text='Female', variable=radio_state, value=2)
+female_radio_btn.grid(column=1, row=0)
+
+radio_state1 = IntVar()
+white_radio = Radiobutton(root, text='White', variable=radio_state1, value=1)
+white_radio.grid(row=1,column=0)
+black_radio = Radiobutton(root, text='Black', variable=radio_state1, value=2)
+black_radio.grid(row=1,column=1)
+
+root.mainloop()
+
+#########BUTTON FUNCTIONAILITY ########ATTACHING EVENTS####
+from tkinter import *
+
+def func1(event):
+    print('Single Click')
+
+def func2(event):
+    print('Double Click')
+    import sys; sys.exit() #close the window
+
+root = Button(None, text='click me using mouse')
+root.pack()
+root.bind('<Button-1>', func1)
+root.bind('<Double-1>', func2)
+root.mainloop()
+
+###########ATTACHING EVENTS TO BUTTON PT2##########
+from tkinter import *
+
+root = Tk()
+root.geometry('500x500')
+
+frame = Frame(master=root, )
+frame.grid()
+
+label1 = Label(master=frame, text='first name')
+label1.grid()
+
+first_name = StringVar()
+first_name = Entry(textvariable=first_name)
+first_name.grid()
+
+label2 = Label(master=frame, text='last name')
+label2.grid()
+
+last_name = StringVar()
+last_name = Entry(textvariable=last_name)
+last_name.grid()
+
+def submit_button():
+    print(f'welcome to {first_name.get()} {last_name.get()}.')
+    import sys; sys.exit()
+button = Button(master=frame, text='Submit', command=submit_button)
+button.grid()
+
+root.mainloop()
+#########SIMPLE DIALOG BOX########
+from tkinter import *
+from tkinter import simpledialog
+
+root = Tk()
+root.geometry('500x500')
+#simple dialog box takes the entered text and stored the entered text into the variable, GUI input function essentially
+#fav_player = simpledialog.askstring('Favorite Player', 'Who is your favorite player', parent=root)
+
+fav_number = simpledialog.askinteger('Favorite number', 'What is your favorite number', parent=root)
+if fav_number == None: print('You dont have a favorite player')
+else: print(f'your favorite number is {fav_number}')
+
+root.mainloop()
+##########MESSAGE BOXES###########
+from tkinter import *
+from tkinter import simpledialog
+from tkinter import messagebox
+root = Tk()
+root.geometry('500x500')
+
+def info_box():
+    messagebox.showinfo('Info Box', 'Football is a very cool game')
+
+def error_box():
+    messagebox.showerror('Error Box', 'Error!!!!')
+
+def warning_box():
+    messagebox.showwarning('Warning', 'Warning!!!')
+
+info_button = Button(master=root, text='Info', command=info_box)
+info_button.grid(column=0,row=0)
+
+error_box_button = Button(master=root, text='error', command=error_box)
+error_box_button.grid()
+
+warning_box_button = Button(master=root, text='Warning', command=warning_box)
+warning_box_button.grid()
+
+root.mainloop()
+
+###########MORE MESSAGEBOX BUTTONS######
+from tkinter import *
+from tkinter import simpledialog
+from tkinter import messagebox
+root = Tk()
+root.geometry('500x500')
+
+#answer = messagebox.askyesno('Yes No box', 'do you like Football')
+#if answer: print('yes i like football')
+#else: print(' I dont like football')
+
+#answer = messagebox.askokcancel('OK Cancel', 'You should love football')
+
+#answer  = messagebox.askretrycancel('Retry Cancel', 'Retry or Cancel')
+
+answer  = messagebox.askyesnocancel('Retry or Cancel', 'retry or cancel')
+
+root.mainloop()
+
+#########MENUBUTTON WITH CHECK BUTTONS######
+from tkinter import *
+
+root = Tk()
+root.geometry('500x500')
+
+menu_button = Menubutton(master=root, text='FOOD', relief=RAISED)
+menu_button.grid()
+menu_button.menu = Menu(menu_button, tearoff=0)
+menu_button['menu'] = menu_button.menu
+
+menu_button.pack()
+
+menu_button.menu.add_checkbutton(label='Fish', variable=IntVar())
+menu_button.menu.add_checkbutton(label='Veg', variable=IntVar())
+
+root.mainloop()

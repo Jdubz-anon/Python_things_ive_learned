@@ -1,0 +1,33 @@
+import smtplib as smtp
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+server = 'smtp.gmail.com'
+port = 587
+email_from = 'thorntonbill343@gmail.com'
+email_to = 'jgort25@gmail.com'
+email = 'thorntonbill343@gmail.com'
+password = 'adeymlceqxjavryx'
+
+message = MIMEMultipart()
+message['subject'] = 'houses'
+message['from'] = email_from
+message['to'] = email_to
+filename = 'test_attachment.txt'
+open_file = open(filename, 'rb')
+mimref = MIMEBase('application', 'octect_stream')
+mimref.set_payload(open_file.read())
+encoders.encode_base64(mimref)
+mimref.add_header('Content-disposition', 'openfile;filename='+filename)
+message.attach(mimref)
+
+connection = smtp.SMTP(server, port)
+connection.starttls()
+try:
+    connection.login(email,password)
+except:
+    print('login failed')
+
+connection.sendmail(email_from, email_to,message.as_string())
+connection.quit()

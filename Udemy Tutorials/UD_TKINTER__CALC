@@ -1,0 +1,153 @@
+from tkinter import *
+from PIL import Image, ImageTk
+
+expression = ''
+
+def press(num):
+    global expression
+    expression = expression + str(num)
+    equation.set(expression)
+
+def EqualPress():
+    try:
+        global expression
+        result = str(eval(expression))
+        equation.set(result)
+
+        expression = ''
+    except:
+        equation.set('Invalid Equation')
+        expression = ''
+
+def clear():
+    global expression
+    expression = ''
+    equation.set('')
+
+
+
+if __name__ == '__main__':
+    window = Tk()
+    window.configure(background='red')
+    window.title('Simple Calculator App')
+    window.geometry('280x300')
+
+    equation = StringVar()
+    expression_field = Entry(window, textvariable=equation,font=('Aerial',20), fg='red')
+    expression_field.grid(columnspan=10, ipady=10, ipadx=70)
+
+    height = width = 50
+
+    img1 = Image.open('number one.png')
+    img1.resize((height,width))
+
+    oneImage = ImageTk.PhotoImage(image=img1,)
+    button = Button(window, image=oneImage, bg='red', command=lambda: press(1) , height=height, width=width)
+    button.grid(row=2,column=0)
+
+    img2 = Image.open('number one.png')
+    img2.resize((height, width))
+
+    twoImage = ImageTk.PhotoImage(image=img2)
+    button2 = Button(window, image=oneImage, bg='red', command=lambda: press(2), height=height, width=width, text='2')
+    button2.grid(row=2, column=1)
+
+    img3 = Image.open('number one.png')
+    img3.resize((height, width))
+
+    threeImage = ImageTk.PhotoImage(image=img3)
+    button3 = Button(window, image=oneImage, bg='red', command=lambda: press(3), height=height, width=width, text='2')
+    button3.grid(row=2, column=2)
+
+    img4 = Image.open('number one.png')
+    img4.resize((height, width))
+
+    fourImage = ImageTk.PhotoImage(image=img4)
+    button4 = Button(window, image=oneImage, bg='red', command=lambda: press(4), height=height, width=width, text='2')
+    button4.grid(row=3, column=0)
+
+    img5 = Image.open('number one.png')
+    img5.resize((height, width))
+
+    fiveImage = ImageTk.PhotoImage(image=img5)
+    button5 = Button(window, image=oneImage, bg='red', command=lambda: press(5), height=height, width=width, text='2')
+    button5.grid(row=3, column=1)
+
+    img6 = Image.open('number one.png')
+    img6.resize((height, width))
+
+    sixImage = ImageTk.PhotoImage(image=img6)
+    button6 = Button(window, image=oneImage, bg='red', command=lambda: press(6), height=height, width=width, text='2')
+    button6.grid(row=3, column=2)
+
+    img7 = Image.open('number one.png')
+    img7.resize((height, width))
+
+    sevenImage = ImageTk.PhotoImage(image=img7)
+    button7 = Button(window, image=oneImage, bg='red', command=lambda: press(7), height=height, width=width, text='2')
+    button7.grid(row=4, column=0)
+
+    img8 = Image.open('number one.png')
+    img8.resize((height, width))
+
+    eightImage = ImageTk.PhotoImage(image=img8)
+    button8 = Button(window, image=oneImage, bg='red', command=lambda: press(8), height=height, width=width, text='2')
+    button8.grid(row=4, column=1)
+
+    img9 = Image.open('number one.png')
+    img9.resize((height, width))
+
+    nineImage = ImageTk.PhotoImage(image=img9)
+    button9 = Button(window, image=oneImage, bg='red', command=lambda: press(9), height=height, width=width, text='2')
+    button9.grid(row=4, column=2)
+
+    img0 = Image.open('number one.png')
+    img0.resize((height, width))
+
+    zeroImage = ImageTk.PhotoImage(image=img0)
+    button0 = Button(window, image=oneImage, bg='red', command=lambda: press(0), height=height, width=width, text='2')
+    button0.grid(row=5, column=1)
+
+    img_div = Image.open('number one.png')
+    img_div.resize((height, width))
+
+    div_Image = ImageTk.PhotoImage(image=img_div)
+    button_div = Button(window, image=oneImage, bg='red', command=lambda: press('/'), height=height, width=width, text='2')
+    button_div.grid(row=2, column=3)
+
+    img_multi = Image.open('number one.png')
+    img_multi.resize((height, width))
+
+    multi_Image = ImageTk.PhotoImage(image=img_multi)
+    button_multi = Button(window, image=oneImage, bg='red', command=lambda: press('*'), height=height, width=width, text='2')
+    button_multi.grid(row=3, column=3)
+
+    img_add = Image.open('number one.png')
+    img_add.resize((height, width))
+
+    add_Image = ImageTk.PhotoImage(image=img_add)
+    button_add = Button(window, image=oneImage, bg='red', command=lambda: press('+'), height=height, width=width, text='2')
+    button_add.grid(row=4, column=3)
+
+    img_sub = Image.open('number one.png')
+    img_sub.resize((height, width))
+
+    sub_Image = ImageTk.PhotoImage(image=img_sub)
+    button_sub = Button(window, image=oneImage, bg='red', command=lambda: press('-'), height=height, width=width)
+    button_sub.grid(row=5, column=3)
+
+    img_equal = Image.open('number one.png')
+    img_equal.resize((height, width))
+
+    equal_Image = ImageTk.PhotoImage(image=img_equal)
+    button_equal = Button(window, image=oneImage, bg='red', command=EqualPress , height=height, width=width)
+    button_equal.grid(row=6, column=3)
+
+    img_clear = Image.open('number one.png')
+    img_clear.resize((height, width))
+
+    clear_Image = ImageTk.PhotoImage(image=img_clear)
+    button_clear = Button(window, image=oneImage, bg='red', command=lambda: clear(), height=height, width=width)
+    button_clear.grid(row=7, column=3)
+
+    window.mainloop()

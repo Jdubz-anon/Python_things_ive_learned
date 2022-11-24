@@ -1,0 +1,68 @@
+#######READ FIRST!!!!!!! MUST PUT CHROMEDRIVE IN THE PATH BEFOR WEBDRIVER.CHROME() WILL WORK!!!!!!!########
+
+
+from selenium import webdriver
+import time
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+browser = webdriver.Chrome()
+browser.get(' https://phptravels.com/demo/')
+time.sleep(2) #wait for page to be comepletely loaded
+sign_up = browser.find_element(by='xpath', value='//*[contains(text(),"Sign up")]')
+sign_up.click()
+urls = 'https://phptravels.org/register.php'
+#browser.execute_script("window.open('');") #opens new tab or window
+browser.switch_to.window(browser.window_handles[1]) #switch to (next) window index 1
+first_name = browser.find_element(by='id', value='inputFirstName')
+first_name.send_keys('Justin')
+
+
+
+#######ActionChains Tutorial##########
+
+from selenium import webdriver
+import time
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+browser = webdriver.Chrome()
+browser.get('https://Udemy.com')
+log_in = browser.find_element(by='xpath', value="//*[contains(text(), 'Log in')]")
+log_in.click()
+
+email_login = browser.find_element(by='name', value='email')
+email_login.send_keys('lykava_jiena25@tutanota.com')
+
+pass_login = browser.find_element(by='id', value='id_password')
+pass_login.send_keys("sR*h%Cui^2bJ@B")
+
+submit = browser.find_element(by='id', value='submit-id-submit')
+submit.click()
+
+action = ActionChains(browser) #hover cursor to open drop down menu
+drop_down_icon = browser.find_element(by='xpath', value='//*[@id="udemy"]/div[2]/div[1]/div[3]/div[9]') #xpath of parent element in HTML code
+action.move_to_element(drop_down_icon).perform()
+drop_menu = browser.find_element(by='xpath', value='//*[@id="u117-popper-content--18"]/div/div/div/div/a[1]/div[2]/div/div[1]')
+drop_menu.click()
+
+#set condition on how much time to wait or click on as as available, alternative to using time.sleep###
+from selenium import webdriver
+import time
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+browser = webdriver.Chrome()
+browser.get('https://Udemy.com')
+#set condition on how much time to wait or click on as as available###
+WebDriverWait(browser,30).until(EC.element_to_be_clickable(By.XPATH("//*[contains(text(), 'Log in')]"))).click()
+#log_in = browser.find_element(by='xpath', value="//*[contains(text(), 'Log in')]")
+#log_in.click()
+
+email_login = browser.find_element(by='name', value='email')
+email_login.send_keys('lykava_jiena25@tutanota.com')
+
+pass_login = browser.find_element(by='id', value='id_password')
+pass_login.send_keys("sR*h%Cui^2bJ@B")
+
+submit = browser.find_element(by='id', value='submit-id-submit')
+submit.click()

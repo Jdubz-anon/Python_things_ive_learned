@@ -1,0 +1,37 @@
+def call_function(func):
+    def add_something():
+        print('my name is ')
+        return func()
+    return add_something
+def name():
+    print('justin')
+whole_sentence = call_function(name)
+whole_sentence()
+#whole_sentence = call_function(name)
+#whole_sentence()
+name('im crazy')
+
+
+###################################
+
+def call_function(func):
+    def add_something(*args, **kwargs):
+        print('my name is ')
+        return func(*args, **kwargs)
+    return add_something
+
+@call_function
+def name(mind_state):
+    print(f'justin and im {mind_state}')
+
+###############################################
+
+def decorator(func):
+    def wrapper(a,b):
+        print(f'the product is {a*b}')
+        return func(a,b)
+    return wrapper
+@decorator
+def existing_func(a,b):
+    print(f'the sum is {a+b}')
+existing_func(1,2)

@@ -1,0 +1,50 @@
+import matplotlib.pyplot as plt
+meal_number = [1,2,3,4,5,6,7,8]
+discount = [4,11,19,6,14,7,8,11]
+plt.plot(meal_number,discount)
+plt.show()
+########################################
+import matplotlib.pyplot as graph
+import pandas as pd
+
+dataframe = pd.read_csv(r'C:\Users\Whois\OneDrive\Desktop\Python\cricketmatch2.csv') #dont forget the r before refernceing the file path!!!
+Over_x = dataframe.iloc[0: ,0]
+Eng_scoreY = dataframe.iloc[0: ,1]
+NZ_score = dataframe.iloc[0: ,2]
+
+graph.plot(Over_x,Eng_scoreY,color='red')
+graph.plot(Over_x,NZ_score,color='blue')
+graph.title('Score Comparison')
+graph.xlabel('Overs')
+graph.ylabel('Scores')
+
+graph.show()
+###############################################BARCHART####
+import matplotlib.pyplot as graph
+
+scores = [1,4,3,9,6]
+match = [1,2,3,4,5]
+
+graph.bar(match,scores, color='red',edgecolor='yellow',linewidth=3,xerr=1,yerr=1,ecolor='blue',alpha=0.4,align='center')
+graph.title('Goals scored')
+graph.ylabel(match)
+graph.xlabel(scores)
+graph.show()
+############################PIECHART################
+import matplotlib.pyplot as graph
+
+names = ['james','tammy','bob','sam','jenny']
+goals = [4,7,3,1,5]
+seperator = [0,0,0.1,0,0.5]
+
+graph.pie(goals,labels=names,autopct='%0.1f%%',explode=seperator)
+graph.title('Goals scored per person')
+graph.show()
+############################HISTOGRAM#################
+import matplotlib.pyplot as graph
+
+boys_marks = [21,25,36,49,75,80,14,93,22,22,64,62,37,39,44,28,93,77,19,60,29]
+girls_marks = [45,32,87,68,98,46,77,63,48,90,100,74,36,57,69,79,57,69,63,52,92]
+graph.hist([boys_marks,girls_marks],bins=[45,50,55,60,75,85,100],rwidth=0.85,color=['green','yellow'],label=['boys','girls'])
+graph.legend()
+graph.show()

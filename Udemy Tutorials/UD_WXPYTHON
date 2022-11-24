@@ -1,0 +1,711 @@
+###CREATE A WINDOW####
+import wx
+
+app = wx.App()
+
+frame = wx.Frame(None, -1, 'Our First Window', )
+frame.Show()
+
+app.MainLoop()
+
+####CREATING CLASSES TO CREATE A WINDOW####
+import wx
+
+class MyFrame(wx.Frame):
+    def __init__(self,parent,title):
+        super(MyFrame,self).__init__(parent, title=title)
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title="Our First Class Frame Window")
+        self.frame.Show()
+        return True
+
+app = MyApp()
+app.MainLoop()
+
+###########CREATING FIRST PANNEL#######
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class.
+
+'''
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        # creating a label by adding an object
+        self.label = wx.StaticText(self, label='Created Label', pos=(100, 100))
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+app = MyApp()
+app.MainLoop()
+
+##########ADDING LABEL WITH BOXSIZER#########
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        vboxsizer = wx.BoxSizer(wx.VERTICAL)
+        hboxsizer = wx.BoxSizer(wx.HORIZONTAL)
+
+        self.label0 = wx.StaticText(self, label='Label 0', style=wx.ALIGN_CENTER)
+        vboxsizer.Add(self.label0,0,wx.EXPAND)
+
+        self.label1 = wx.StaticText(self, label='Label 1', style=wx.ALIGN_CENTER)
+        vboxsizer.Add(self.label1, 0, wx.EXPAND)
+
+        self.label2 = wx.StaticText(self, label='Label 2', style=wx.ALIGN_CENTER)
+        hboxsizer.Add(self.label2, 0, wx.EXPAND)
+
+        self.label3 = wx.StaticText(self, label='Label 3', style=wx.ALIGN_CENTER)
+        hboxsizer.Add(self.label3, 0, wx.EXPAND, wx.ALIGN_RIGHT,20)
+        vboxsizer.Add(hboxsizer,1,wx.ALL|wx.EXPAND)
+
+        self.SetSizer(vboxsizer)
+
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+ #####CREATING A GRID USIND GRIDSIZER CLASS/METHOD####
+
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        ##creating a grid using gridsizer
+        gridSizer = wx.GridSizer(4,4,5,5)
+        for i in range(1,17):
+            btn = 'Button # ' + str(i)
+            gridSizer.Add(wx.Button(self,label=btn),0,wx.EXPAND)
+        self.SetSizer(gridSizer)
+
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+
+#####ADDING AN EVENT BUTTON######
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        sizer = wx.BoxSizer(wx.HORIZONTAL)
+
+        self.label = wx.StaticText(self, label='Something')
+        sizer.Add(self.label,1,wx.EXPAND)
+        self.btn = wx.Button(self, label='Click Me')
+        self.btn.Bind(wx.EVT_BUTTON,self.X)
+        sizer.Add(self.btn, 0)
+        self.SetSizer(sizer)
+
+    def X(self,event):
+        self.label.SetLabelText('Hello World')
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+
+###TOGGLE BUTTON####
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        self.label = wx.StaticText(self,label='Hello World')
+        vbox.Add(self.label,0,wx.EXPAND)
+
+        self.togglebtn = wx.ToggleButton(self, label='Click to turn on')
+        vbox.Add(self.togglebtn,0)
+
+        self.togglebtn.Bind(wx.EVT_TOGGLEBUTTON, self.onToggleClick)
+
+        self.SetSizer(vbox)
+
+    def onToggleClick(self,event):
+        state = event.GetEventObject().GetValue()
+        if state == True:
+            self.label.SetLabelText('Off')
+
+            event.GetEventObject().SetLabel('Click to Off')
+        else:
+            self.label.SetLabelText('On')
+            event.GetEventObject().SetLabel('Click to On')
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+####CREATE CHECKBOX###
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+
+        self.chkbox1 = wx.CheckBox(self, label='Pencil')
+        vbox.Add(self.chkbox1)
+
+        self.chkbox2 = wx.CheckBox(self, label='Pen')
+        vbox.Add(self.chkbox2)
+
+        self.chkbox3 = wx.CheckBox(self, label='Marker')
+        vbox.Add(self.chkbox3)
+
+        self.label = wx.StaticText(self,label='')
+        vbox.Add(self.label)
+
+        self.SetSizer(vbox)
+        self.Bind(wx.EVT_CHECKBOX, self.onChecked)
+
+    def onChecked(self,event):
+        checkbox = event.GetEventObject()
+        self.label.SetLabelText('You have selected Checkbox' + checkbox.GetLabel())
+
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+########RadioButton######
+import wx
+
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600, 500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        self.rb1 = wx.RadioButton(self, label='pencil', pos=(10, 10), style=wx.RB_GROUP)
+        self.rb2 = wx.RadioButton(self, label='pen', pos=(10, 40))
+        self.rb3 = wx.RadioButton(self, label='Marker', pos=(10, 70))
+        self.label = wx.StaticText(self, label='', pos=(10, 100))
+        self.Bind(wx.EVT_RADIOBUTTON, self.onClick)
+
+    def onClick(self, event):
+        rb = event.GetEventObject()
+        self.label.SetLabelText(f'you have selected {rb.GetLabel()}')
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+
+#########raidobox######
+import wx
+
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600, 500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+
+        rb_list = ['pencil', 'pen', 'Marker']
+        self.rbox = wx.RadioBox(self, label='RadioBox - 1', pos=(10, 10),
+                                choices=rb_list, style=wx.RA_SPECIFY_ROWS)
+        self.label = wx.StaticText(self, label='', pos=(10, 160))
+        self.Bind(wx.EVT_RADIOBOX, self.onClick)
+
+    def onClick(self, event):
+        rbsel = self.rbox.GetStringSelection()
+        self.label.SetLabelText(f'you have selected {rbsel}')
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+
+########ComboBox########
+import wx
+
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600, 500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+
+        self.label = wx.StaticText(self, label='Which is your favorite sport', pos=(50, 30))
+        sports = ['football', 'soccer', 'tennis', 'hockey', 'basketball']
+        self.combo_box = wx.ComboBox(self, choices=sports, pos=(50, 50))
+
+        self.label2 = wx.StaticText(self, label='', pos=(50, 80))
+        self.Bind(wx.EVT_COMBOBOX, self.onClick)
+
+    def onClick(self, event):
+        self.label2.SetLabel(f'My Favorite Sport is {self.combo_box.GetValue()}')
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+#########message boxes######
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+
+        self.button = wx.Button(self, label='Open Msg Box', pos=(100,100))
+        self.Bind(wx.EVT_BUTTON, self.messagebox)
+
+    def messagebox(self,event):
+        wx.MessageBox('Message box dialog info icon', 'Dialog', wx.OK|wx.ICON_INFORMATION)
+
+        #wx.MessageBox('Message box dialog warning icon', 'Dialog', wx.OK|wx.ICON_WARNING)
+
+        #wx.MessageBox('Message box dialog error icon', 'Dialog', wx.OK|wx.ICON_ERROR)
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+
+######message dialogbox####
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+
+        self.button = wx.Button(self, label='Open Question Dialog', pos=(100,100))
+        self.Bind(wx.EVT_BUTTON, self.onClick)
+
+    def onClick(self,event):
+        label = wx.MessageDialog(None, 'Do you want to close? ', 'Close/Open', wx.YES_NO | wx.ICON_QUESTION)
+
+        result = label.ShowModal()
+        if result == wx.ID_YES:
+            print('Closed')
+        else:
+            print('Remaind opened')
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+
+#######spinbutton####
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+
+        self.text = wx.TextCtrl(self, -1,'1', (30,50),(60,-1))
+        h = self.text.GetSize().height
+        w = self.text.GetSize().width + self.text.GetPosition().x+2
+        self.spinbutton = wx.SpinButton(self, -1, (w,50),(h*2/3,h), wx.SP_VERTICAL)
+        self.spinbutton.SetRange(1,100)
+        self.spinbutton.SetValue(1)
+        self.Bind(wx.EVT_SPIN, self.onSpin, self.spinbutton)
+
+    def onSpin(self,event):
+        self.text.SetValue(str(event.GetPosition()))
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+app = MyApp()
+app.MainLoop()
+
+##########ToolTip for buttons####
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        self.tipClick = wx.ToolTip('Click Tool Tip')
+        self.tipOpen = wx.ToolTip('Open Tool Tip')
+
+        self.button = wx.Button(self, label='Click', pos=(80,80))
+        self.button2 = wx.Button(self, label='Open', pos=(80,130))
+
+        self.button.SetToolTip(self.tipClick)
+        self.button2.SetToolTip((self.tipOpen))
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+app = MyApp()
+app.MainLoop()
+#########status bar#######
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+
+        self.statusbar = self.CreateStatusBar(style=wx.BORDER_NONE)
+        self.statusbar.SetStatusStyles([wx.SB_FLAT])
+
+        self.statusbar.SetBackgroundColour('gray')
+        self.statusbar.SetStatusText('This is a status bar')
+
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+app = MyApp()
+app.MainLoop()
+##########Font Dialog ######
+import wx
+
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600, 500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        self.button = wx.Button(self, label='Open Font Dialog', pos=(100, 100))
+        self.txtctrl = wx.TextCtrl(self, size=(400, 300), style=wx.TE_MULTILINE, pos=(100, 150))
+
+        self.Bind(wx.EVT_BUTTON, self.OnClick)
+
+    def OnClick(self, event):
+        dialog = wx.FontDialog(None, wx.FontData())
+        if dialog.ShowModal() == wx.ID_OK:
+            data = dialog.GetFontData()
+            font = data.GetChosenFont()
+            colour = data.GetColour()
+
+            self.txtctrl.SetFont(font)
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()
+
+#############Print Dialog#####
+import wx
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600,500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        self.button = wx.Button(self, label='Open Print Dialog', pos=(100,100))
+        self.Bind(wx.EVT_BUTTON, self.OnClick)
+
+    def OnClick(self,event):
+        data = wx.PrintDialogData()
+        data.EnableSelection(True)
+        data.EnablePrintToFile(True)
+        data.EnablePageNumbers(True)
+        data.SetMinPage(1)
+        data.SetMaxPage(10)
+
+        dialog = wx.PrintDialog(self, data)
+        if dialog.ShowModal() == wx.ID_OK:
+            data = dialog.GetPrintDialogData()
+            print('GetAllPages : %d\n' % data.GetAllPages())
+            dialog.Destroy()
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+app = MyApp()
+app.MainLoop()
+###########About Box####
+
+#Also import wx.adv
+#MyFrameClass
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        self.button = wx.Button(self, label= 'Show About Box', pos=(100,100))
+        self.Bind(wx.EVT_BUTTON, self.OnClick)
+
+    def OnClick(self,event):
+        info = wx.adv.AboutDialogInfo()
+        info.SetName('Tutorial')
+        info.SetVersion('1.1')
+        info.SetDescription('Python Tutorials')
+        info.SetCopyright('(C) 2020-2040')
+        info.SetWebSite('www.udemy.com')
+        info.AddDeveloper('Justin')
+
+        wx.adv.AboutBox(info)
+#MyApp Class
+########CREATE SLIDER####
+#MyFrame Class
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        self.slider = wx.Slider(self, value=10, minValue=1, maxValue=100, style=wx.SL_HORIZONTAL|wx.SL_LABELS)
+        vbox.Add(self.slider,1,flag=wx.EXPAND)
+        self.Bind(wx.EVT_SLIDER, self.OnSlide)
+        self.txt = wx.StaticText(self, label='Hello', style=wx.ALIGN_CENTER)
+        vbox.Add(self.txt,1,1, wx.ALIGN_CENTER_HORIZONTAL)
+        self.SetSizer(vbox)
+        self.Center()
+    def OnSlide(self,event):
+        obj=event.GetEventObject()
+        value=obj.GetValue()
+        font=self.GetFont()
+        font.SetPointSize(self.slider.GetValue())
+        self.txt.SetFont(font)
+#MyAppClass
+#######Create A Grid####
+
+#import wx.grid
+#MyFrame Class
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        mygrid = grid.Grid(self)
+        mygrid.CreateGrid(26,9)
+
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        vbox.Add(mygrid,1,wx.EXPAND)
+
+        self.SetSizer(vbox)
+#MyApp Class
+
+####Customize Tables###
+
+#import wx.grid
+#MyFrame Class
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        mygrid = grid.Grid(self)
+        mygrid.CreateGrid(26,9)
+
+        mygrid.SetCellValue(1,1,'Hello')
+        mygrid.SetCellFont(1,1,wx.Font(15,wx.ROMAN,wx.ITALIC,wx.NORMAL))
+
+        mygrid.SetCellValue(4,4,'Green')
+        mygrid.SetCellBackgroundColour(4,4,wx.RED)
+        mygrid.SetCellTextColour(4,4,wx.WHITE)
+
+        mygrid.SetCellValue(5,5,'read only')
+        mygrid.SetReadOnly(5,5, True)
+
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        vbox.Add(mygrid,1,wx.EXPAND)
+        self.SetSizer(vbox)
+#MyApp Class
+

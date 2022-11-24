@@ -1,0 +1,39 @@
+from bs4 import BeautifulSoup
+import requests
+
+with open('Online Python Challenges - Python Principles.html') as fp:
+    soup = BeautifulSoup(fp, 'lxml')
+
+####working with the HTML tree#####TAGS
+#title = soup.title
+#script = soup.script.text
+#a = soup.find_all('a')
+#div = soup.find_all('div') #findall div tags
+#div = soup.find('div', class_ = 'footer-box')           #finding a specific tag
+chall_link = soup.find_all('tr', class_='chall-link')
+for link in chall_link:
+    print(link.a.text)
+###############Indexing#####
+from bs4 import BeautifulSoup
+import requests
+
+with open('Online Python Challenges - Python Principles.html') as fp:
+    soup = BeautifulSoup(fp, 'lxml')
+
+chall_link = soup.find_all('tr', class_='chall-link')
+href = chall_link[1].a #indexing which tag you want to choose
+print(href)
+#############Pulling HTML from website using request module, scraping the site######
+from bs4 import BeautifulSoup
+import requests
+
+source = requests.get('https://www.cntraveler.com/galleries/2015-05-22/best-beaches-in-the-us').text
+soup = BeautifulSoup(source,'lxml')
+
+places = soup.find_all('div', class_='GallerySlideFigCaption-hoKUps fBMMnT')
+for place in places:
+    place_name = place.span.text
+    print(place_name)
+
+    place_desc = place.p.text
+    print(place_desc)

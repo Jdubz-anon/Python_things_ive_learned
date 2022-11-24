@@ -1,0 +1,75 @@
+import wx
+
+'''Calling the MyApp class, in the my app class it calls the Myframe class which has an object (self.panel) that calls the
+MyPanel class. '''
+
+
+class MyFrame(wx.Frame):
+    def __init__(self, parent, title):
+        super(MyFrame, self).__init__(parent, title=title, size=(600, 500))
+        self.panel = MyPanel(self)
+
+
+class MyPanel(wx.Panel):
+    def __init__(self, parent):
+        super(MyPanel, self).__init__(parent)
+        hbox = wx.BoxSizer(wx.HORIZONTAL)
+        self.listbox = wx.ListBox(self, size=(400, 400))
+        hbox.Add(self.listbox, wx.ID_ANY, wx.EXPAND | wx.ALL, 20)
+
+        btnpanel = wx.Panel(self)
+        vbox = wx.BoxSizer(wx.VERTICAL)
+
+        newBtn = wx.Button(btnpanel, wx.ID_ANY, 'NEW', size=(90, 30))
+        rename_btn = wx.Button(btnpanel, wx.ID_ANY, 'Rename', size=(90, 30))
+        delbtn = wx.Button(btnpanel, wx.ID_ANY, 'DELETE', size=(90, 30))
+        clrbtn = wx.Button(btnpanel, wx.ID_ANY, 'CLEAR', size=(90, 30))
+
+        self.Bind(wx.EVT_BUTTON, self.NewItem, id=newBtn.GetId())
+        self.Bind(wx.EVT_BUTTON, self.OnRename, id=rename_btn.GetId())
+        self.Bind(wx.EVT_BUTTON, self.OnDelete, id=delbtn.GetId())
+        self.Bind(wx.EVT_BUTTON, self.OnClear, id=clrbtn.GetId())
+        self.Bind(wx.EVT_LISTBOX_DCLICK, self.OnRename)
+        vbox.Add(-1, 20)
+        vbox.Add(newBtn)
+        vbox.Add(rename_btn)
+        vbox.Add(delbtn)
+        vbox.Add(clrbtn)
+
+        btnpanel.SetSizer(vbox)
+        hbox.Add(btnpanel, wx.EXPAND | wx.RIGHT, 20)
+        self.SetSizer(hbox)
+        self.Center()
+
+    def NewItem(self, event):
+        text = wx.GetTextFromUser('Enter New Item', 'Insert Dialog')
+        if text != '':
+            self.listbox.Append(text)
+
+    def OnRename(self, event):
+        sel = self.listbox.GetSelection()
+        text = self.listbox.GetString(sel)
+        renamed = wx.GetTextFromUser('Rename Item', 'Rename dialog', text)
+        if renamed != '':
+            self.listbox.Delete(sel)
+            item_id = (self.listbox.Insert(renamed, sel))
+            self.listbox.SetSelection(item_id)
+
+    def OnDelete(self, event):
+        sel = self.listbox.GetSelection()
+        if sel != -1:
+            self.listbox.Delete(sel)
+
+    def OnClear(self, event):
+        self.listbox.Clear()
+
+
+class MyApp(wx.App):
+    def OnInit(self):
+        self.frame = MyFrame(parent=None, title='Our first Panel')
+        self.frame.Show()
+        return True
+
+
+app = MyApp()
+app.MainLoop()

@@ -1,0 +1,655 @@
+
+
+
+#header-container h1 {
+	margin: 0;
+}
+
+h1 {
+	color: #fff !important;
+	margin-top: 3rem;
+}
+
+h2 {
+}
+
+h1, h2 {
+	letter-spacing: 0.05rem;
+}
+
+.landing-page h2 {
+}
+
+.landing-page {
+	color: #525252;
+}
+
+#top-bg, #top-smallerbg {
+	width: 95%;
+	position: absolute;
+
+	border-radius: 0 0 80px;
+	left: 0;
+	top: 0;
+}
+
+#top-smallerbg {
+	background-image: linear-gradient(268deg, #438496, #315b68);
+	top: -1132px;
+	height: 1200px;
+	left: -100px;
+	z-index: -1;
+	/* opacity: 0.4; */
+}
+
+#top-bg {
+	background-color: #315b68;
+	-webkit-transform: skewY(-7deg);
+	transform: skewY(-7deg);
+	top: -100%;
+	height: 200%;
+	z-index: -2;
+	border-radius: 64%;
+	width: 200%;
+	left: -68%;
+}
+
+#header-container {
+	display: inline-block;
+	width: 60%;
+	min-width: 320px;
+	vertical-align: top;
+	height: 100vh;
+}
+
+#signup-container {
+	display: inline-block;
+	border-radius: 0.5rem;
+	background-color: white;
+	width: 49%;
+	height: 500px;
+	box-shadow: 0 3px 5px 0 rgba(0,0,0,0.15) !important;
+}
+
+#top-container {
+	margin-top: 2rem;
+}
+
+#h1-mini {
+	color: #f7ce3e;
+	margin-top: 0;
+}
+
+.lp #h1-mini {
+	padding-left: 0px;
+}
+
+.mini-title {
+	font-size: 0.800rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-bottom: 0;
+}
+
+#header-desc {
+	color: #fff;
+	padding-right: 50px;
+	margin-bottom: 1rem;
+	font-size: 1.0rem;
+}
+
+.bottom-padding {
+	height: 7rem; 
+	z-index: -1;
+}
+
+.no-select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.button {
+	align-items: center;
+	border: 1px solid transparent;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	border-radius: 0.25rem;
+	display: inline-flex;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 600;
+	justify-content: center;
+	letter-spacing: inherit;
+	padding: 0.7rem 1.5rem;
+	position: relative;
+	text-align: center;
+	transition: background-color 0.3s cubic-bezier(0.77, 0, 0.175, 1),border-color 0.3s cubic-bezier(0.77, 0, 0.175, 1),color 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.cta-button {
+	user-select: none;
+	background-color: #f7ce3e;
+	border-color: #f7ce3e !important;
+	color: #3d4251 !important;
+	font-size: 0.85rem;
+	font-family: Arial, "Lato", sans-serif;
+}
+
+.cta-button:hover {
+	background-color: #fbe28d;
+	border-color: #fbe28d !important;
+	color: #3d4251 !important;
+}
+
+.section-spacing {
+	padding-top: 11rem;
+}
+
+
+.desc-container {
+	display: inline-block;
+	width: calc(50% - 4rem);
+	padding-left: 2rem;
+	padding-right: 2rem;
+	vertical-align: top;
+}
+
+.desc-pic {
+	display: inline-block;
+	text-align: center;
+	width: 49%;
+}
+
+.shadowed {
+	-webkit-filter: drop-shadow(0 21px 35px rgba(0,0,0,.3));
+	filter: drop-shadow(0 21px 35px rgba(0,0,0,.3));
+}
+
+.rot {
+	height: 800px;
+}
+
+#mugshot-pic img {
+	width: 130%;
+}
+
+.testimonial {
+	color: #525252;
+}
+
+.testimonial-text {
+	color: #525252;
+	font-weight: 600;
+	margin: 3rem 0 1.5rem;
+	font-style: normal;
+	font-size: 0.9rem;
+}
+
+.testimonial-pic {
+	flex-shrink: 0;
+	border-radius: 50%;
+	height: 2rem;
+}
+
+.testimonial-multicontainer {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+}
+
+.testimonial-desc {
+	margin-left: 1rem;
+	color: #0a1612;
+	font-size: 0.7rem;
+	text-transform: uppercase;
+}
+
+#cards-container {
+	width: 100%;
+	position: relative;
+	min-height: 15rem;
+	padding-top: 5rem;
+	margin-top: 4rem;
+}
+
+.card h3 {
+	margin-bottom: 0.5rem;
+	margin-top: 1rem;
+
+}
+
+.card-col {
+	width: 33%;
+	float: left;
+}
+
+.card {
+	margin-left: 0.3rem;
+	margin-right: 0.3rem;
+	display: flex;
+	flex-grow: 1;
+	float: left;
+	min-height: 10rem;
+	border-radius: 0.25rem;
+	box-shadow: 0 1rem 3rem 0 rgba(0,0,0,.2);
+	border: 1px solid #e6eaeb;
+	box-sizing: inherit;
+	background: white;
+	padding: 0.5rem;
+	padding-top: 0.5rem;
+	max-width: 80%;
+	padding-bottom: 1rem;
+}
+
+.card i {
+	margin-top: 4.5rem;
+margin-left: -2rem;
+font-size: 1.3rem;
+display: inline-block;
+color: #438496;
+margin-right: 1rem;
+}
+
+.card-text {
+	display: inline-block;
+	margin-left: 0.5rem;
+	font-size: 0.9rem;
+}
+
+.card-number {
+	position: relative;
+	left: calc(50% - 1.5rem);
+	top: -1.8rem;
+	height: 2.5rem;
+	min-width: 2.5rem;
+	border: 1px solid #e6eaeb;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: white;
+	color: #438496;
+	font-weight: 600;
+}
+
+#learn-best-container {
+	width: 100%;
+	margin-bottom: -40px;
+	text-align: center;
+}
+
+#learn-best {
+	max-width: 30rem;
+	text-align: left;
+	display: inline-block;
+}
+
+.cards-bg {
+	position: absolute;
+z-index: -1;
+display: block;
+margin: auto;
+top: 3rem;
+opacity: 0.2;
+width: 100%;
+height: auto;
+}
+
+#testi-subheader {
+	color: #438496;
+	
+}
+
+#testimonials-container {
+	text-align: center;
+}
+
+#testi-quote {
+	font-size: 1.2rem;
+	/* font-style: italic; */
+	text-align: center;
+	color: #525252;
+	position: relative;
+	display: inline-block;
+	max-width: 70%;
+}
+
+#testi-quote-wrapper {
+	margin-top: 2rem;
+	min-height: 7rem;
+}
+
+.quote-mark {
+	color: #438496;
+	line-height: 1;
+	font-family: serif;
+	vertical-align: middle;
+	font-size: 6rem;
+	margin: 25px;
+}
+
+#testi-desc {
+	margin-top: 1rem;
+	margin-bottom: 40px;
+}
+
+#testi-images {
+	display: flex;
+	justify-content: space-around;
+	padding-top: 1rem;
+}
+
+#testi-images img {
+	border-radius: 50%;
+}
+
+#final-cta {
+	padding: 3rem;
+	background-image: linear-gradient(83deg, #315b68, #438496);
+	box-shadow: 0 0.25rem 0.45rem 0 rgba(0,0,0,.15);
+	color: #fff;
+	border-radius: 0.25rem;
+	margin-bottom: -6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+footer {
+	border: none;
+}
+
+#reassurance {
+	background-image: linear-gradient(83deg, #315b68, #438496);
+	color: white;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+#reassurance .inner-container {
+	display: flex;
+	align-items: center;
+}
+
+#reassurance-pic {
+	border-radius: 50%;
+	box-shadow: 0 0.25rem 0.45rem 0 rgba(0,0,0,.15);
+	border: 1px solid #e6eaeb;
+	height: 10rem;
+}
+
+#reassurance .testimonial-text, #reassurance .testimonial-desc, #reassurance .testimonial {
+	color: white;
+}
+
+#reassurance-quote {
+	font-size: 1.5rem;
+	margin-top: 10px;
+}
+
+#work-at-title {
+	color: #525252;
+	margin-bottom: 50px;
+}
+
+#work-at {
+	text-align: center;
+}
+
+#work-at-imgs {
+	display: flex;
+	justify-content: space-between;
+}
+
+#work-at-imgs img {
+	height: 1.8rem;
+	filter: grayscale(100%) contrast(65%);
+	align-self: center;
+}
+
+#python-logo-container {
+	display: inline-block;
+
+}
+
+#python-logo {
+height: 13rem;
+filter: grayscale(100%) contrast(50%);
+margin-top: 1rem;
+}
+
+.shadow-container {
+	background-color: white;
+	color: #212934;
+	opacity: 0.95;
+	border-radius: 0.7rem;
+	padding: 5%;
+	box-shadow: 0 3px 5px 0 rgba(0,0,0,0.15) !important;
+	margin-bottom: 3rem;
+	margin-top: 1rem;
+}
+
+.shadow-container > p > code {
+	background-color: #f8f9fa;
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+	border: 1px solid #e1e7ec;
+	margin-left: 0.2rem;
+	margin-right: 0.2rem;
+}
+
+.shadow-container h1 {
+	color: #212934 !important;
+}
+
+.hidden-quote {
+	display: none;
+}
+
+.shown-quote {
+	display: inline-block;
+}
+
+.hidden-quote-img,
+.shown-quote-img {
+	height: 5rem;
+}
+
+.hidden-quote-img {
+	opacity: 0.4;
+	cursor: pointer;
+}
+
+.shown-quote-img {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.final-text {
+	display: inline-block;
+	margin-right: 2rem;
+}
+
+.final-button {
+	float: right;
+	display: flex;
+	flex-direction: column;
+}
+
+#mugshot-img {
+	height: 19rem;
+	width: auto;
+}
+
+
+@media only screen and (max-width: 800px) {
+	#top-container {
+		margin-top: 15px;
+	}
+	.cta-button {
+		min-width: 170px;
+	}
+	#python-logo {
+		display: none;
+	}
+	#header-container h1 {
+		font-size: 2rem;
+	}
+	#h1-mini {
+		margin-top: 10px;
+	}
+	#work-at-imgs {
+		flex-direction: column;
+		justify-content: space-around;
+		min-height: 300px;
+	}
+	#work-at-title {
+		margin-bottom: 10px;
+	}
+	.desc-container, .desc-pic, #learn-best {
+		margin-left: 0px;
+		width: 100%;
+		max-width: 100%;
+	}
+	.desc-pic img {
+		width: 100%;
+		height: auto;
+		margin-top: 30px;
+	}
+	.card-col {
+		width: 100%;
+		flex: 0;
+	}
+	.card {
+		margin-top: 25px;
+	}
+	#reassurance {
+		margin-top: 50px;
+	}
+	#reassurance .inner-container {
+		display: block;
+	}
+	.quote-mark {
+		display: none;
+	}
+	#testi-quote {
+		max-width: 100%;
+		font-size: 1.4rem;
+	}
+	#testi-images img {
+		height: 60px;
+	}
+	#final-cta .cta-button {
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+	.cards-bg {
+		top: 80px;
+		left: -225px;
+	}
+	#phone-pic {
+		margin-bottom: 1rem;
+	}
+	#testi-quote-wrapper {
+		min-height: 7rem;
+	}
+	.section-spacing {
+		padding-top: 5rem;
+	}
+	#mugshot-img {
+		height: 13rem;
+		margin-top: 5rem;
+	}
+	
+}
+
+/* this only looks good (is necessary) when the screen is really tiny. */
+@media only screen and (max-width: 500px) {
+	#final-cta .cta-button {
+		margin-top: 2rem;
+	}
+	#final-cta {
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+	.final-text {
+		margin-right: 0;
+		margin-left: 0;
+	}
+}
+
+#landing-text-container {
+	display: inline-block;
+	max-width: 38rem;
+	vertical-align: top;
+}
+
+.lp h1 {
+	margin: 0;
+	margin-bottom: 0.7rem;
+	font-size: 2.4rem;
+}
+
+.landing-inner {
+	text-align: center;
+}
+
+.landing-inner #header-desc {
+	padding-right: 3rem;
+	padding-left: 3rem;
+	font-size: 1.1rem;
+}
+@media screen and (max-width : 500px) {
+	.landing-inner #header-desc {
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
+}
+
+#phone-pic {
+	width: 70%
+}
+
+#top-bg {
+	top: -35rem;
+	height: 70rem;
+}
+#header-container {
+	height: 35rem;
+}
+
+.right {
+	float: right;
+}
+
+#final-cta div h2 {
+	padding-top: 0;
+	margin-top: 0;
+}
+
+header {
+	line-height: 5rem;
+}
+#top-container {
+	margin-top: 3rem;
+}
+.dedi-lp #top-bg {
+	height: 80rem;
+	top: -40rem;
+}
+.app-body header {
+	line-height: 1.7rem;
+}
