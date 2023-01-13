@@ -2,9 +2,10 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
-from bullet import Bullet
-
 class AlienInvasion:
+
+    from bullet import Bullet
+
     def __init__(self):
         '''initilize game and create game resources'''
         '''setting your variables here'''
@@ -16,7 +17,6 @@ class AlienInvasion:
         pygame.display.set_caption('Alien Invasion')
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
-
     def _check_keydown_events(self,event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = True

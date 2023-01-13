@@ -59,10 +59,10 @@ WebDriverWait(browser,30).until(EC.element_to_be_clickable(By.XPATH("//*[contain
 #log_in.click()
 
 email_login = browser.find_element(by='name', value='email')
-email_login.send_keys('lykava_jiena25@tutanota.com')
+email_login.send_keys("username")
 
 pass_login = browser.find_element(by='id', value='id_password')
-pass_login.send_keys("sR*h%Cui^2bJ@B")
+pass_login.send_keys(password)
 
 submit = browser.find_element(by='id', value='submit-id-submit')
 submit.click()
