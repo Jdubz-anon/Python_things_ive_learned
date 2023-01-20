@@ -7,11 +7,12 @@ class Parser:
         self.func_list = []
         self.graph_type = ['line','bar','pie']
         self.arg_list = []
+        self.graph = None
         self.function_dict = {
-                            'graph':"graph()",
-                            'showme':"showme()",
-                            'list':"create_list()",
-                            'peek':"peek()"
+                            'graph':"graph",
+                            'showme':"showme",
+                            'list': 'create_list',
+                            'peek':"peek"
                                             }
 
 
@@ -34,7 +35,7 @@ class Parser:
         return new_input
 
     def function_worker(self, input_):
-        #input = input_.split()
+        #func_list = []
         filt_func_list = list(filter(lambda item : item in self.function_dict, self.input))
         self.func_list.clear()
         self.func_arg_dict.clear()
