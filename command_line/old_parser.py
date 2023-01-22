@@ -22,7 +22,7 @@ class Parser:
             "peek": None,
 
         }
-
+        super().__init__()
     def ampsand_remover(self, *args):
         new_input = []
         for item in args:

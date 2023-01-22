@@ -1,40 +1,65 @@
 import csv
 
 class Parser:
-    def __init__(self, input_):
-        self.split_input = input_.split()
-        self.arg_dict = {
-            'location': None,
-            'category': None,
-            'dates': None
-            }
+    def __init__(self, inputs):
+        self.split_input = inputs.split()
+        self.location_dict = dict()
+        self.category_dict = dict()
+        self.dates_dict = dict()
         self.func_dict = {
             'list': self.create_list
         }
         self.func_list = list(filter(lambda func : func in self.func_dict,
                                      self.split_input))
-    def _arg_organizer(self):
-        self.arg_dict['dates'] = self.split_input[-1].split('-')
-        self.arg_dict['location'] = self.split_input[-2]
-        self.arg_dict['category'] = self.split_input[-3]
+    def arg_organizer(self):
+        self.dates_dict[self.split_input[-1]] = self.split_input[-1].split('-')
+        if "&" in self.split_input[-2]:
+            self.locations = self.split_input[-2].split('&')
+            for loc in self.locations:
+                self.location_dict[loc] = loc.replace('-', ' ') if '-' in loc else loc
+        else:
+            self.location_dict[self.split_input[-2]] = self.split_input[-2].replace('-', ' ') if '-' in self.split_input[-2] else self.split_input[-2]
+        self.category_dict[self.split_input[-3]] = self.split_input[-3]
+
+    def function_worker(self, input_):
+        filt_func_list = list(filter(lambda item: item in self.func_dict, self.split_input))
+        return filt_func_list
+
+
+
 
     def create_list(self):
-        self._arg_organizer()
-        file = '/media/jdubzanon/SmallStorage/csv_files/state_crime.csv'
-        with open(file) as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            line = 0
-            for row in csv_reader:
-                for i in range(int(self.arg_dict['dates'][0]), int(self.arg_dict['dates'][1]) + 1):
-                    if self.arg_dict['location'].title() in row.values() and str(i) in row['Year']:
-                        print(row[self.arg_dict['category']] + " " + str(i))
+        print('hello')
+
+
+
+
+    # def create_list(self):
+    #     self.arg_organizer()
+    #     file = '/media/jdubzanon/SmallStorage/csv_files/state_crime.csv'
+    #     with open(file) as csv_file:
+    #         csv_reader = csv.DictReader(csv_file)
+    #         line = 0
+    #         for row in csv_reader:
+    #             for i in range(int(self.dates_dict[self.split_input[-1]][0]),
+    #                            int(self.dates_dict[self.split_input[-1]][1]) + 1):
+    #                 for vals in self.location_dict.values():
+    #                     if vals.title() in row.values() and str(i) in row['Year']:
+    #                         for cats in self.category_dict.values():
+    #                             print(row[cats])
+
+                    # if self.location_dict.title() in row.values() and str(i) in row['Year']:
+                    #     print(row[self.arg_dict['category']] + " " + str(i))
 
 
 
 
 
 
-input_ = input("> ")
-par = Parser(input_)
-for items in par.func_list:
-    par.func_dict[items]()
+# user = input('> ')
+# par = Parser(user)
+# par.arg_organizer()
+# par.create_list()
+# # print(par.category_dict)
+# # print(par.location_dict)
+# #print(par.dates_dict)
