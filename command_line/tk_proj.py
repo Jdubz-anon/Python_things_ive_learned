@@ -3,6 +3,7 @@ from tkinter import ttk
 import subprocess
 from Python.command_line.parser import Parser
 import csv
+import pandas
 
 class Shell(ttk.Frame):
     def add_frame(self, label, row=None, col=None):
@@ -31,7 +32,7 @@ class Shell(ttk.Frame):
                         ###textbox widget/output window#####
         textbox_frame = self.add_frame('Output Window',row=2)
         self.big_box = tk.Text(textbox_frame, height=30,width=100, background='black', foreground='white',
-                               takefocus=0)
+                               takefocus=0, wrap='none')
         self.big_box.grid()
                         ###widget binding###
         self.command_history.bind('<Return>', self.cmd_history_bind_func)
@@ -63,34 +64,51 @@ class App(tk.Tk):
         self.sh = Shell()
         self.sh.grid()
         self.sh.ent_widget.bind('<Return>', self.bind_ent_widget_func)
-        #self.bind('<Return>', self.create_list())
+        self.file = None
         self.function_dict = {
             'graph': self.graph,
             'showme': "showme()",
             'list': self.create_list,
-            'peek': "peek()"
+            'peek': self.peek,
+            'connect' : self.change_file
                 }
 
 
     def bind_ent_widget_func(self, event):
         if self.sh.entry_var.get():
-            self.par = Parser(self.sh.entry_var.get())
-            self.filt_fun_list = self.par.func_list
+
             self.sh.big_box.delete('1.0', tk.END)
-            #history list
+            #command history list
             command = self.sh.entry_var.get()
             self.sh.command_history_list.append(command)
             # sp = subprocess.check_output(self.entry_var.get(), shell=True)
 
-            print(self.filt_fun_list)
+                #calling functions from entrybox widget
+            self.par = Parser(self.sh.entry_var.get())
+            self.filt_fun_list = self.par.func_list
+
             for item in self.filt_fun_list:
                 if item in self.par.func_dict:
                     self.function_dict[item]()
             self.sh.entry_var.set('')
 
+    def change_file(self):
+        self.file = self.par.split_input[-1]
+        self.sh.big_box.insert('1.0', f'Connected to {self.file}')
+
+
+    def peek(self):
+        df = pandas.read_csv(f'/media/jdubzanon/SmallStorage/csv_files/{self.file}')
+        convert = df.head().to_json
+        self.sh.big_box.insert('1.0', df.head())
+        #subprocess.run(f'gedit {self.file}', shell=True)
+
+
+
+
     def create_list(self):
         self.par.arg_organizer()
-        file = '/media/jdubzanon/SmallStorage/csv_files/state_crime.csv'
+        file = f'/media/jdubzanon/SmallStorage/csv_files/{self.file}'
         with open(file) as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
@@ -102,7 +120,7 @@ class App(tk.Tk):
                                 self.sh.big_box.insert('1.0', str(cats) + ' ' +str(vals).title() +"\n" 'Year'+ ' ' + str(i) + ":" + "Total" + ' ' +
                                                        row[cats] + ";\n")
 
-                                print(row[cats])
+                                #print(row[cats])
 
 
         # file = '/media/jdubzanon/SmallStorage/csv_files/state_crime.csv'
