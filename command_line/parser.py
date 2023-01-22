@@ -6,8 +6,11 @@ class Parser:
         self.location_dict = dict()
         self.category_dict = dict()
         self.dates_dict = dict()
+        self.file = None
         self.func_dict = {
-            'list': self.create_list
+            'list': None,
+            'connect': None,
+            'peek': None
         }
         self.func_list = list(filter(lambda func : func in self.func_dict,
                                      self.split_input))
