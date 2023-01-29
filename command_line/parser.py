@@ -31,10 +31,6 @@ class Parser:
                 self.location_dict[self.split_input[-2]] = self._internal_parse(self.split_input[-2])
             self.category_dict[self.split_input[-3]] = self.split_input[-3]
 
-    def function_worker(self, input_):
-        filt_func_list = list(filter(lambda item: item in self.func_dict, self.split_input))
-        return filt_func_list
-
 
     def _internal_parse(self, var):
             return var.replace('-', ' ') if '-' in var else var

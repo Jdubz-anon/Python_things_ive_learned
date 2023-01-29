@@ -125,7 +125,7 @@ class App(tk.Tk):
                           'You have to connect to a file first \n If you have connected to a file please check that your file name is valid')
 
         mg.create_da_graph()
-      
+
 
 
 if __name__ == "__main__":
