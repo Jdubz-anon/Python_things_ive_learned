@@ -1,7 +1,0 @@
-for i in range(10):
-    print(i)
-
-
-file = open('/home/jdubzanon/PycharmProjects/pythonProject/Python/command_line/testing_exec','r')
-test = file.read()
-exec(compile(test, 'filename', 'exec'))
