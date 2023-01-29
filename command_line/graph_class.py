@@ -32,7 +32,7 @@ class MakeGraph:
                         if location.title() in row.values() and str(year) in row['Year']:
                             for cats in self.category_dict.values():
                                 self.graph_map[location].append(float(row[cats]))
-                              
+
 
 
     def _make_graph_map(self):

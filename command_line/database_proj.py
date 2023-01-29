@@ -96,8 +96,7 @@ class App(tk.Tk):
                                 for vals in self.par.location_dict.values():
                                     if vals.title() in row.values() and str(i) in row['Year']:
                                         for cats in self.par.category_dict.values():
-                                            # self.graph_map[vals] = []
-                                            # self.graph_map[vals].append(row[cats])
+                                            
 
 
                                             self.sh.big_box.insert('1.0', str(cats) + ' ' + str(
