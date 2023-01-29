@@ -1,8 +1,8 @@
-import csv
+
 
 class Parser:
+    '''Parse the text based arguments in the shell'''
     def __init__(self, inputs):
-        super().__init__()
         self.locations = None
         self.split_input = inputs.split()
         self.location_dict = dict()
@@ -40,38 +40,7 @@ class Parser:
             return var.replace('-', ' ') if '-' in var else var
 
 
-    def create_list(self):
-        print('hello')
 
 
 
 
-    # def create_list(self):
-    #     self.arg_organizer()
-    #     file = '/media/jdubzanon/SmallStorage/csv_files/state_crime.csv'
-    #     with open(file) as csv_file:
-    #         csv_reader = csv.DictReader(csv_file)
-    #         line = 0
-    #         for row in csv_reader:
-    #             for i in range(int(self.dates_dict[self.split_input[-1]][0]),
-    #                            int(self.dates_dict[self.split_input[-1]][1]) + 1):
-    #                 for vals in self.location_dict.values():
-    #                     if vals.title() in row.values() and str(i) in row['Year']:
-    #                         for cats in self.category_dict.values():
-    #                             print(row[cats])
-
-                    # if self.location_dict.title() in row.values() and str(i) in row['Year']:
-                    #     print(row[self.arg_dict['category']] + " " + str(i))
-
-
-
-
-
-
-# user = input('> ')
-# par = Parser(user)
-# par.arg_organizer()
-# par.create_list()
-# # print(par.category_dict)
-# # print(par.location_dict)
-# #print(par.dates_dict)

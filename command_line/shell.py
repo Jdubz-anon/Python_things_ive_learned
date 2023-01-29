@@ -1,9 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-# import subprocess
-# from Python.command_line.parser import Parser
-# import csv
-# import pandas
+
 
 
 class Shell(ttk.Frame):

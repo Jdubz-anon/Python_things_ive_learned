@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 import subprocess
 from Python.command_line.parser import Parser
 from Python.command_line.shell import Shell
@@ -126,12 +125,7 @@ class App(tk.Tk):
                           'You have to connect to a file first \n If you have connected to a file please check that your file name is valid')
 
         mg.create_da_graph()
-        # print(mg.years)
-        # print(mg.location_dict)
-        # print(mg.category_dict)
-        # print(mg.split_input)
-        # print(mg.dates_dict)
-        # print(mg.graph_map.keys())
+      
 
 
 if __name__ == "__main__":

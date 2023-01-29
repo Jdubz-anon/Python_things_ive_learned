@@ -8,7 +8,6 @@ class MakeGraph:
         self.split_input = split_input
         self.category_dict = category_dict
         self.graph_map = dict()
-        self.colors = ['list of colors']
         self.years = []
 
 
@@ -44,10 +43,6 @@ class MakeGraph:
             self.graph_map[location] = list()
 
     def create_da_graph(self):
-        # print(len(self.years))
-        # for key in self.graph_map.keys():
-        #     print(len(self.graph_map[key]))
-
         for key in self.graph_map.keys():
             plt.plot(self.years, self.graph_map[key], label=key)
         for key in self.category_dict.keys():
