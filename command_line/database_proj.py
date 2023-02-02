@@ -10,7 +10,8 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.par = None
-        self.file = None
+        self.file = 'state_crime.csv'
+        self.dir = '/media/jdubzanon/SmallStorage/csv_files/'
         self.title('Database Shell')
         self.graph_map = dict()
         self.function_dict = {
@@ -49,32 +50,40 @@ class App(tk.Tk):
         self.sh.big_box.insert('1.0', f'Connected to {self.file}')
 
     def peek(self):
-        df = pandas.read_csv(f'/media/jdubzanon/SmallStorage/csv_files/{self.file}')
-        convert = df.head().to_json
-        self.sh.big_box.insert('1.0', df.head())
-        # subprocess.run(f'gedit {self.file}', shell=True)
+        pass
+        '''grab column 1-4 from first row
+        print random lines of those columns
+        linecount = 0
+        columns = []
+        for row in csvreade
+            if linecount = 0
+            for col in row[0:5]
+            columns.append()
+        for i in range 25 500 25
+            
+        '''
+        # df = pandas.read_csv(f'/media/jdubzanon/SmallStorage/csv_files/{self.file}')
+        # convert = df.head().to_json
+        # self.sh.big_box.insert('1.0', df.head())
+        # subprocess.run(f'gedit {self.dir + self.file}', shell=True)
 
     def create_list(self):
         self.par.arg_organizer()
-        file = '/media/jdubzanon/SmallStorage/csv_files/state_crime.csv'
+        file = '/media/jdubzanon/SmallStorage/csv_files/LEOKA_1995_2021/LEOKA_ASSAULT_TIME_WEAPON_INJURY_1995_2021.csv'
         try:
             with open(file) as csv_file:
                 csv_reader = csv.DictReader(csv_file)
 
                 if self.par.category_dict.get('cats'):
-                    cat_list = []
                     for fieldname in csv_reader.fieldnames:
-                        cat_list.append(fieldname)
-                    for names in cat_list:
-                        self.sh.big_box.insert('1.0', names + '\n')
-                        #self.par.category_dict.clear()
-
+                        self.sh.big_box.insert('1.0', fieldname + '\n')
+                        self.par.category_dict.clear()
 
                 elif self.par.category_dict.get('locations'):
                     locations_list = []
                     for row in csv_reader:
-                        if row['State'] not in locations_list:
-                            locations_list.append(row['State'])
+                        if row.get('State') or row.get('STATE_ABBR') not in locations_list:
+                            locations_list.append(row.get('State') or row.get('STATE_ABBR'))
                     for location in locations_list:
                         self.sh.big_box.insert('1.0', location + '\n')
                         self.par.category_dict.clear()
@@ -94,9 +103,9 @@ class App(tk.Tk):
                             for i in range(int(self.par.dates_dict[self.par.split_input[-1]][0]),
                                            int(self.par.dates_dict[self.par.split_input[-1]][1]) + 1):
                                 for vals in self.par.location_dict.values():
-                                    if vals.title() in row.values() and str(i) in row['Year']:
+                                    if vals.title() or vals.upper() in row.values() and str(i) in row.get('Year') or row.get('DATA_YEAR'):
                                         for cats in self.par.category_dict.values():
-                                            
+
 
 
                                             self.sh.big_box.insert('1.0', str(cats) + ' ' + str(
