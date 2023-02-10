@@ -3,8 +3,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 server = 'smtp.gmail.com'
 port = 587
-email = 'thorntonbill343@gmail.com'
-password = 'adeymlceqxjavryx'
+email = 'email.address'
+password = 'password'
 try:
     connection = smtp.SMTP(server,port)
     connection.ehlo()
@@ -15,7 +15,7 @@ try:
         tmessage =MIMEMultipart('mixed')
         tmessage['subject'] = 'test subject'
         tmessage['From']=email
-        tmessage['To']= 'jgort25@gmail.com'
+        tmessage['To']= 'email.address'
         plain_msg = 'this is plain msg'
         html_message = '''<html><body><h1>House Price</h1><p>The House Price</body></html>'''
 
@@ -33,7 +33,7 @@ except:
 #TEXT = 'Hey check it out im sending you an email with python. isnt this so cool LOL'
 #message = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT) #add subject to email Subject: {}\n\n{}
 _From = email
-_To = ['jgort25@gmail.com']
+_To = ['email.address']
 connection.sendmail(_From,_To, tmessage.as_string())
 connection.quit()
 '''send email to multiple address

@@ -14,7 +14,7 @@ urls = 'https://phptravels.org/register.php'
 #browser.execute_script("window.open('');") #opens new tab or window
 browser.switch_to.window(browser.window_handles[1]) #switch to (next) window index 1
 first_name = browser.find_element(by='id', value='inputFirstName')
-first_name.send_keys('Justin')
+first_name.send_keys('enter name')
 
 
 
@@ -66,3 +66,6 @@ pass_login.send_keys('password')
 
 submit = browser.find_element(by='id', value='submit-id-submit')
 submit.click()
+
+
+
